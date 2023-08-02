@@ -1,6 +1,6 @@
 package com.repeat.controller;
 
-import com.repeat.dto.AuthRequestDto;
+import com.repeat.dto.SingupRequestDto;
 import com.repeat.service.UserService;
 import com.sun.jdi.request.DuplicateRequestException;
 import jakarta.validation.Valid;
@@ -19,9 +19,9 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/user/signup")
-    public ResponseEntity<String> signUp(@Valid @RequestBody AuthRequestDto authRequestDto) {
+    public ResponseEntity<String> signUp(@Valid @RequestBody SingupRequestDto singupRequestDto) {
         try {
-            String result = userService.signUp(authRequestDto);
+            String result = userService.signUp(singupRequestDto);
             return ResponseEntity.ok().body(result);
         } catch (DuplicateRequestException e) {
             return ResponseEntity.badRequest().body(e.getMessage());

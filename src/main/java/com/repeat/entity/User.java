@@ -1,7 +1,7 @@
 package com.repeat.entity;
 
 
-import com.repeat.dto.AuthRequestDto;
+import com.repeat.dto.SingupRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,9 +22,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public User(AuthRequestDto authRequestDto) {
-        this.username = authRequestDto.getUsername();
-        this.password = authRequestDto.getPassword();
+    public User(SingupRequestDto singupRequestDto) {
+        this.username = singupRequestDto.getUsername();
+        this.password = singupRequestDto.getPassword();
     }
 
 }

@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AuthRequestDto {
+public class SingupRequestDto {
 
     @Pattern(regexp = "^[a-z0-9]{3,}$")
     @NotBlank

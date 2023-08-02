@@ -1,6 +1,6 @@
 package com.repeat.service;
 
-import com.repeat.dto.AuthRequestDto;
+import com.repeat.dto.SingupRequestDto;
 import com.repeat.entity.User;
 import com.repeat.repository.UserRepository;
 import com.sun.jdi.request.DuplicateRequestException;
@@ -13,10 +13,10 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public String signUp(AuthRequestDto authRequestDto) {
-        String username = authRequestDto.getUsername();
-        String password = authRequestDto.getPassword();
-        String confirmpassword = authRequestDto.getConfirmpassword();
+    public String signUp(SingupRequestDto singupRequestDto) {
+        String username = singupRequestDto.getUsername();
+        String password = singupRequestDto.getPassword();
+        String confirmpassword = singupRequestDto.getConfirmpassword();
 
         // password에 닉네임과 같은 값이 포함된 경우
         if (password.contains(username)) {
@@ -33,7 +33,7 @@ public class UserService {
             throw new DuplicateRequestException("중복된 닉네임입니다");
         }
 
-        User user = new User(authRequestDto);
+        User user = new User(singupRequestDto);
         userRepository.save(user);
         return "회원가입 성공";
     }
