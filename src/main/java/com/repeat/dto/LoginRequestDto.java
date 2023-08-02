@@ -1,4 +1,4 @@
-package com.repeat.controller;
+package com.repeat.dto;
 
 import lombok.Getter;
 

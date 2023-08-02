@@ -1,5 +1,6 @@
 package com.repeat.controller;
 
+import com.repeat.dto.LoginRequestDto;
 import com.repeat.dto.SingupRequestDto;
 import com.repeat.jwt.JwtUtil;
 import com.repeat.service.UserService;

@@ -6,10 +6,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+// lombok
 @Getter
+@NoArgsConstructor
+
+// jpa
 @Entity
 @Table(name = "users")
-@NoArgsConstructor
 public class User {
 
     @Id

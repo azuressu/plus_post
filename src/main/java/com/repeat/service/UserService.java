@@ -1,10 +1,9 @@
 package com.repeat.service;
 
-import com.repeat.controller.LoginRequestDto;
+import com.repeat.dto.LoginRequestDto;
 import com.repeat.dto.SingupRequestDto;
 import com.repeat.entity.User;
 import com.repeat.repository.UserRepository;
-import com.sun.jdi.request.DuplicateRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
