@@ -28,9 +28,10 @@ public class Post extends Timestamp{
     /**
      * 생성자 - 약속된 형태로만 생성가능하도록 합니다.
      */
-    public Post (PostRequestDto postRequestDto) {
+    public Post (PostRequestDto postRequestDto, User user) {
         this.title = postRequestDto.getTitle();
         this.content = postRequestDto.getContent();
+        this.user = user;
     }
 
     /**
@@ -49,5 +50,9 @@ public class Post extends Timestamp{
     /**
      * 서비스 메소드 - 외부에서 엔티티를 수정할 메소드를 정의합니다. (단일 책임을 가지도록 주의합니다.)
      */
+    public void updatePost(PostRequestDto postRequestDto) {
+        this.title = postRequestDto.getTitle();
+        this.content = postRequestDto.getContent();
+    }
 
 }
