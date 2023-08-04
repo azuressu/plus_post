@@ -45,9 +45,22 @@ public class CommentService {
         return new CommentResponseDto(comment);
     }
 
+    public void deleteComment(Long commentId, User user) {
+        Comment comment = findComment(commentId);
+
+        if (comment.getUser().equals(user)){
+            commentRepository.delete(comment);
+        } else {
+            throw new IllegalArgumentException("작성자만 삭제할 수 있습니다.");
+        }
+
+    }
+
     public Post findPost(Long postId) {
         return postRepository.findById(postId).orElseThrow();
     }
 
     public Comment findComment(Long commentId) { return commentRepository.findById(commentId).orElseThrow(); }
+
+
 }
