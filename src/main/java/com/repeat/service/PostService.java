@@ -50,4 +50,15 @@ public class PostService {
         }
         return new OnePostResponseDto(post);
     }
+
+    public void deletePost(User user, Long postId) {
+        Post post = findPost(postId);
+
+        if (post.getUser().equals(user)) {
+            postRepository.delete(post);
+        } else {
+            throw new IllegalArgumentException("작성자만 삭제 가능합니다.");
+        }
+
+    }
 }

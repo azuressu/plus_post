@@ -27,7 +27,7 @@ public class JwtUtil {
     private static final String AUTHORIZATION_HEADER = "Authorization";
 
     // JWT 만료 시간
-    private static final Long TOKEN_TIME = 60 * 60 * 100L;
+    private static final Long TOKEN_TIME = 60 * 60 * 1000L;
 
     // JWT 식별자
     private static final String BEARER_PREFIX = "Bearer ";

@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class OnePostResponseDto {
+public class OnePostResponseDto extends ApiResponseDto{
 
     private String title;
     private String content;
