@@ -1,5 +1,6 @@
 package com.repeat.service;
 
+import com.repeat.dto.OnePostResponseDto;
 import com.repeat.dto.PostRepsonseDto;
 import com.repeat.dto.PostRequestDto;
 import com.repeat.entity.Post;
@@ -25,5 +26,15 @@ public class PostService {
         Post newPost = new Post(postRequestDto, user);
         Post savedPost = postRepository.save(newPost);
         return new PostRepsonseDto(savedPost);
+    }
+
+    public OnePostResponseDto getOnePost(Long postId) {
+        Post post = findPost(postId);
+        return new OnePostResponseDto(post);
+    }
+
+
+    public Post findPost(Long postId) {
+        return postRepository.findById(postId).orElseThrow();
     }
 }

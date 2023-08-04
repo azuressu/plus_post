@@ -1,6 +1,7 @@
 package com.repeat.controller;
 
 import com.repeat.dto.ApiResponseDto;
+import com.repeat.dto.OnePostResponseDto;
 import com.repeat.dto.PostRepsonseDto;
 import com.repeat.dto.PostRequestDto;
 import com.repeat.jwt.JwtUtil;
@@ -31,6 +32,12 @@ public class PostController {
     public ResponseEntity<ApiResponseDto> createPost(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody PostRequestDto postRequestDto) {
         PostRepsonseDto postRepsonseDto = postService.createPost(userDetails.getUser(), postRequestDto);
         return ResponseEntity.ok().body(postRepsonseDto);
+    }
+
+    @GetMapping("/post/{postId}")
+    public ResponseEntity<OnePostResponseDto> getOnePost(@PathVariable Long postId) {
+        OnePostResponseDto onePostResponseDto = postService.getOnePost(postId);
+        return ResponseEntity.ok().body(onePostResponseDto);
     }
 }
 
