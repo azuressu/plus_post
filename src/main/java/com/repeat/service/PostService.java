@@ -8,6 +8,7 @@ import com.repeat.entity.User;
 import com.repeat.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -36,5 +37,17 @@ public class PostService {
 
     public Post findPost(Long postId) {
         return postRepository.findById(postId).orElseThrow();
+    }
+
+    @Transactional
+    public OnePostResponseDto updatePost(User user, Long postId, PostRequestDto postRequestDto) {
+        Post post = findPost(postId);
+
+        if (post.getUser().equals(user)){
+            post.updatePost(postRequestDto);
+        } else {
+            throw new IllegalArgumentException("작성자만 수정 가능합니다.");
+        }
+        return new OnePostResponseDto(post);
     }
 }

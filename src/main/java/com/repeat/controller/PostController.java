@@ -4,10 +4,8 @@ import com.repeat.dto.ApiResponseDto;
 import com.repeat.dto.OnePostResponseDto;
 import com.repeat.dto.PostRepsonseDto;
 import com.repeat.dto.PostRequestDto;
-import com.repeat.jwt.JwtUtil;
 import com.repeat.security.UserDetailsImpl;
 import com.repeat.service.PostService;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,7 +19,6 @@ import java.util.List;
 public class PostController {
 
     private final PostService postService;
-    private final JwtUtil jwtUtil;
 
     @GetMapping("/posts")
     public ResponseEntity<List<PostRepsonseDto>> getPosts() {
@@ -37,6 +34,17 @@ public class PostController {
     @GetMapping("/post/{postId}")
     public ResponseEntity<OnePostResponseDto> getOnePost(@PathVariable Long postId) {
         OnePostResponseDto onePostResponseDto = postService.getOnePost(postId);
+        return ResponseEntity.ok().body(onePostResponseDto);
+    }
+
+    @PutMapping("/post/{postId}")
+    public ResponseEntity<OnePostResponseDto> updatePost(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody PostRequestDto postRequestDto) {
+        OnePostResponseDto onePostResponseDto = null;
+        try {
+            onePostResponseDto = postService.updatePost(userDetails.getUser(), postId, postRequestDto);
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+        }
         return ResponseEntity.ok().body(onePostResponseDto);
     }
 }
